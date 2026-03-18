@@ -4,7 +4,9 @@ import SkillsSection from './components/SkillsSection'
 import WorkSection from './components/WorkSection'
 import ProjectsSection from './components/ProjectsSection'
 import EducationSection from './components/EducationSection'
+import ResumeSection from './components/ResumeSection'
 import ContactSection from './components/ContactSection'
+import AppFooter from './components/AppFooter'
 
 export default function App() {
   return (
@@ -16,8 +18,10 @@ export default function App() {
         <WorkSection />
         <ProjectsSection />
         <EducationSection />
+        <ResumeSection />
         <ContactSection />
       </main>
+      <AppFooter />
     </>
   )
 }
