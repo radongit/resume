@@ -88,30 +88,45 @@ export default function SkillsSection() {
 
     return (
         <Section id="skills" title="Skills" subtitle="Know What I Know" alternate>
-            <Grid container spacing={3}>
+            <Grid container spacing={2.5}>
                 {skillGroups.map(group => (
                     <Grid key={group.title} size={{ xs: 12, sm: 6, md: 4 }}>
                         <Card
-                            variant="outlined"
+                            elevation={0}
                             sx={{
                                 height: '100%',
                                 borderRadius: 3,
-                                borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
-                                backgroundColor: isDark ? '#121212' : '#fff',
-                                boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                                transition: 'box-shadow 0.2s, transform 0.2s',
+                                border: '1px solid',
+                                borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)',
+                                backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.7)',
+                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                                 '&:hover': {
-                                    boxShadow: isDark ? '0 4px 16px rgba(0,0,0,0.3)' : '0 4px 16px rgba(0,0,0,0.08)',
-                                    transform: 'translateY(-2px)',
+                                    boxShadow: isDark
+                                        ? '0 8px 32px rgba(0,0,0,0.3)'
+                                        : '0 8px 32px rgba(0,0,0,0.06)',
+                                    transform: 'translateY(-3px)',
+                                    borderColor: isDark ? 'rgba(46,125,50,0.15)' : 'rgba(46,125,50,0.12)',
                                 },
                             }}
                         >
                             <CardContent sx={{ p: 3, '&:last-child': { pb: 3 } }}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
-                                    <Box sx={{ color: '#2e7d32', display: 'flex' }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2.5 }}>
+                                    <Box sx={{
+                                        color: isDark ? '#66bb6a' : '#2e7d32',
+                                        display: 'flex',
+                                        opacity: 0.75,
+                                    }}>
                                         {group.icon}
                                     </Box>
-                                    <Typography variant="subtitle1" fontWeight={700} sx={{ lineHeight: 1.3 }}>
+                                    <Typography
+                                        variant="subtitle2"
+                                        sx={{
+                                            fontWeight: 600,
+                                            lineHeight: 1.3,
+                                            letterSpacing: '0.01em',
+                                            fontSize: '0.85rem',
+                                        }}
+                                    >
                                         {group.title}
                                     </Typography>
                                 </Box>

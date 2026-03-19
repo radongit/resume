@@ -10,17 +10,26 @@ export default function AppFooter() {
         <Box
             component="footer"
             sx={{
-                py: 3,
+                py: 4,
                 px: 2,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderTop: '1px solid',
-                borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
-                bgcolor: isDark ? '#1a1a1a' : '#fafafa',
+                borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+                bgcolor: isDark ? '#0e0e0e' : '#f1f3f5',
             }}
         >
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+                variant="body2"
+                sx={{
+                    color: 'text.secondary',
+                    fontFamily: '"Archivo", sans-serif',
+                    fontWeight: 600,
+                    fontSize: '0.85rem',
+                    letterSpacing: '-0.01em',
+                }}
+            >
                 Robinson Davis
             </Typography>
         </Box>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
@@ -15,42 +15,63 @@ import { useTheme } from '@mui/material/styles'
 import { useColorMode } from '../ThemeContext'
 import useScrollSpy from '../hooks/useScrollSpy'
 
+const HEADER_HEIGHT_MOBILE = 56
+const HEADER_HEIGHT_DESKTOP = 64
+
 const links = [
     { label: 'About', href: '#about' },
     { label: 'Skills', href: '#skills' },
-    { label: 'Work History', href: '#work' },
+    { label: 'Work', href: '#work' },
     { label: 'Projects', href: '#projects' },
     { label: 'Education', href: '#education' },
     { label: 'Resume', href: '#resume' },
-    { label: 'Contact', href: '#contact' },
 ]
 
 export default function AppHeader() {
     const [menuOpen, setMenuOpen] = useState(false)
+    const appBarRef = useRef<HTMLDivElement>(null)
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.down('md'))
     const activeId = useScrollSpy(links.map(l => l.href.slice(1)))
     const { toggleColorMode } = useColorMode()
     const isDark = theme.palette.mode === 'dark'
 
+    const handleNavClick = useCallback((e: React.MouseEvent, id: string) => {
+        e.preventDefault()
+        const el = document.getElementById(id)
+        if (!el) return
+        // Use the current header height (including open menu if applicable).
+        // As the menu collapses, content shifts up by the same amount the header
+        // shrinks, so the scroll target stays correct throughout the animation.
+        const headerHeight = appBarRef.current?.offsetHeight ?? HEADER_HEIGHT_DESKTOP
+        const top = el.getBoundingClientRect().top + window.scrollY - headerHeight
+        setMenuOpen(false)
+        window.scrollTo({ top, behavior: 'smooth' })
+    }, [])
+
     return (
         <AppBar
+            ref={appBarRef}
             position="sticky"
             elevation={0}
             sx={{
-                backgroundColor: 'background.paper',
+                backgroundColor: isDark ? 'rgba(14,14,14,0.85)' : 'rgba(255,255,255,0.85)',
+                backdropFilter: 'blur(20px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                 color: 'text.primary',
-                boxShadow: theme.palette.mode === 'dark'
-                    ? '0 1px 3px rgba(0,0,0,0.3)'
-                    : '0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)',
+                borderBottom: '1px solid',
+                borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+                transition: 'background-color 0.3s ease, border-color 0.3s ease',
             }}
         >
-            <Toolbar sx={{ justifyContent: 'space-between', maxWidth: 1100, width: '100%', mx: 'auto' }}>
+            <Toolbar sx={{ justifyContent: 'space-between', maxWidth: 1100, width: '100%', mx: 'auto', minHeight: { xs: HEADER_HEIGHT_MOBILE, md: HEADER_HEIGHT_DESKTOP } }}>
                 <Typography
-                    fontWeight={700}
-                    fontSize="1.15rem"
-                    letterSpacing="-0.01em"
-                    sx={{ fontFamily: '"Inter", sans-serif' }}
+                    sx={{
+                        fontFamily: '"Archivo", sans-serif',
+                        fontWeight: 700,
+                        fontSize: '1.15rem',
+                        letterSpacing: '-0.02em',
+                    }}
                 >
                     Robinson Davis
                 </Typography>
@@ -74,41 +95,63 @@ export default function AppHeader() {
                         </IconButton>
                     </Box>
                 ) : (
-                    <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-                        {links.map(link => (
-                            <Button
-                                key={link.href}
-                                href={link.href}
-                                size="small"
-                                sx={{
-                                    color: activeId === link.href.slice(1) ? '#2e7d32' : 'text.secondary',
-                                    fontWeight: activeId === link.href.slice(1) ? 600 : 500,
-                                    fontSize: '0.875rem',
-                                    textTransform: 'none',
-                                    borderRadius: 2,
-                                    px: 1.5,
-                                    backgroundColor: activeId === link.href.slice(1) ? 'rgba(46,125,50,0.08)' : 'transparent',
-                                    transition: 'color 0.15s, background-color 0.15s',
-                                    '&:hover': {
-                                        color: '#2e7d32',
-                                        backgroundColor: 'rgba(46,125,50,0.08)',
-                                    },
-                                    '&:active': {
-                                        color: '#e65100',
-                                        backgroundColor: 'rgba(230,81,0,0.08)',
-                                    },
-                                }}
-                            >
-                                {link.label}
-                            </Button>
-                        ))}
+                    <Box sx={{ display: 'flex', gap: 0.25, alignItems: 'center' }}>
+                        {links.map(link => {
+                            const isActive = activeId === link.href.slice(1)
+                            return (
+                                <Button
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={(e) => handleNavClick(e, link.href.slice(1))}
+                                    size="small"
+                                    sx={{
+                                        color: isActive ? '#2e7d32' : 'text.secondary',
+                                        fontWeight: isActive ? 600 : 400,
+                                        fontSize: '0.82rem',
+                                        textTransform: 'none',
+                                        borderRadius: 1.5,
+                                        px: 1.5,
+                                        py: 0.75,
+                                        minWidth: 'auto',
+                                        position: 'relative',
+                                        letterSpacing: '0.02em',
+                                        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                        '&::after': {
+                                            content: '""',
+                                            position: 'absolute',
+                                            bottom: 4,
+                                            left: '50%',
+                                            transform: isActive ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+                                            width: '60%',
+                                            height: '1.5px',
+                                            backgroundColor: '#2e7d32',
+                                            transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                        },
+                                        '&:hover': {
+                                            color: '#2e7d32',
+                                            backgroundColor: 'transparent',
+                                            '&::after': {
+                                                transform: 'translateX(-50%) scaleX(1)',
+                                            },
+                                        },
+                                    }}
+                                >
+                                    {link.label}
+                                </Button>
+                            )
+                        })}
+                        <Box sx={{ width: '1px', height: 20, bgcolor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)', mx: 1 }} />
                         <IconButton
                             onClick={toggleColorMode}
                             size="small"
-                            sx={{ ml: 1, color: 'text.secondary' }}
+                            sx={{
+                                color: 'text.secondary',
+                                transition: 'color 0.2s',
+                                '&:hover': { color: 'text.primary', backgroundColor: 'transparent' },
+                            }}
                             aria-label="Toggle light/dark mode"
                         >
-                            {isDark ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
+                            {isDark ? <LightModeIcon sx={{ fontSize: 18 }} /> : <DarkModeIcon sx={{ fontSize: 18 }} />}
                         </IconButton>
                     </Box>
                 )}
@@ -123,31 +166,27 @@ export default function AppHeader() {
                             px: 2,
                             pb: 2,
                             borderTop: '1px solid',
-                            borderColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
+                            borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
                         }}
                     >
                         {links.map(link => (
                             <Button
                                 key={link.href}
-                                href={link.href}
-                                onClick={() => setMenuOpen(false)}
+                                onClick={(e) => handleNavClick(e, link.href.slice(1))}
                                 sx={{
                                     color: activeId === link.href.slice(1) ? '#2e7d32' : 'text.secondary',
-                                    fontWeight: activeId === link.href.slice(1) ? 600 : 500,
+                                    fontWeight: activeId === link.href.slice(1) ? 600 : 400,
                                     fontSize: '0.9rem',
                                     textTransform: 'none',
                                     justifyContent: 'flex-start',
                                     py: 1,
-                                    px: 1,
+                                    px: 1.5,
                                     borderRadius: 1.5,
-                                    transition: 'color 0.15s, background-color 0.15s',
+                                    letterSpacing: '0.02em',
+                                    transition: 'all 0.15s ease',
                                     '&:hover': {
                                         color: '#2e7d32',
-                                        backgroundColor: 'rgba(46,125,50,0.08)',
-                                    },
-                                    '&:active': {
-                                        color: '#e65100',
-                                        backgroundColor: 'rgba(230,81,0,0.08)',
+                                        backgroundColor: 'rgba(46,125,50,0.06)',
                                     },
                                 }}
                             >
