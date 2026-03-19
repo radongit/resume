@@ -1,3 +1,4 @@
+import { useRef, useState, useCallback } from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
@@ -5,11 +6,14 @@ import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Grid'
+import Collapse from '@mui/material/Collapse'
 import DescriptionIcon from '@mui/icons-material/Description'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import FolderZipIcon from '@mui/icons-material/FolderZip'
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf'
 import ArticleIcon from '@mui/icons-material/Article'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import PhoneIcon from '@mui/icons-material/Phone'
 import EmailIcon from '@mui/icons-material/Email'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
@@ -64,13 +68,28 @@ const contacts = [
 export default function ResumeSection() {
     const theme = useTheme()
     const isDark = theme.palette.mode === 'dark'
+    const [inlinePdf, setInlinePdf] = useState<string | null>(null)
+    const embedRef = useRef<HTMLDivElement>(null)
+
+    const handleViewInline = useCallback((pdfUrl: string) => {
+        if (inlinePdf === pdfUrl) {
+            setInlinePdf(null)
+        } else {
+            setInlinePdf(pdfUrl)
+            setTimeout(() => {
+                embedRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }, 350)
+        }
+    }, [inlinePdf])
 
     return (
         <Section id="resume" title="Resume & Contact" subtitle="Download My Documents · Get In Touch" alternate>
             <Grid container spacing={{ xs: 4, md: 6 }}>
                 <Grid size={{ xs: 12, md: 7 }}>
                     <Stack spacing={2}>
-                        {documents.map(doc => (
+                        {documents.map(doc => {
+                            const isActive = inlinePdf === doc.pdf
+                            return (
                             <Card
                                 key={doc.title}
                                 elevation={0}
@@ -114,60 +133,89 @@ export default function ResumeSection() {
                                                 {doc.description}
                                             </Typography>
                                         </Box>
-                                        <Stack direction="row" spacing={1} sx={{ flexShrink: 0 }}>
+                                        <Stack spacing={0.75} sx={{ flexShrink: 0, alignItems: 'stretch' }}>
+                                            <Stack direction="row" spacing={1}>
+                                                <Button
+                                                    variant="contained"
+                                                    startIcon={<PictureAsPdfIcon />}
+                                                    href={doc.pdf}
+                                                    download
+                                                    size="small"
+                                                    sx={{
+                                                        backgroundColor: '#c62828',
+                                                        textTransform: 'none',
+                                                        fontWeight: 600,
+                                                        borderRadius: 2,
+                                                        fontSize: '0.78rem',
+                                                        boxShadow: 'none',
+                                                        px: 2,
+                                                        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                        '&:hover': {
+                                                            backgroundColor: '#8e0000',
+                                                            boxShadow: '0 4px 16px rgba(198,40,40,0.3)',
+                                                            transform: 'translateY(-1px)',
+                                                        },
+                                                    }}
+                                                >
+                                                    PDF
+                                                </Button>
+                                                <Button
+                                                    variant="contained"
+                                                    startIcon={<ArticleIcon />}
+                                                    href={doc.docx}
+                                                    download
+                                                    size="small"
+                                                    sx={{
+                                                        backgroundColor: '#1565c0',
+                                                        textTransform: 'none',
+                                                        fontWeight: 600,
+                                                        borderRadius: 2,
+                                                        fontSize: '0.78rem',
+                                                        boxShadow: 'none',
+                                                        px: 2,
+                                                        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                        '&:hover': {
+                                                            backgroundColor: '#003c8f',
+                                                            boxShadow: '0 4px 16px rgba(21,101,192,0.3)',
+                                                            transform: 'translateY(-1px)',
+                                                        },
+                                                    }}
+                                                >
+                                                    DOCX
+                                                </Button>
+                                            </Stack>
                                             <Button
-                                                variant="contained"
-                                                startIcon={<PictureAsPdfIcon />}
-                                                href={doc.pdf}
-                                                download
+                                                variant="outlined"
+                                                startIcon={isActive ? <VisibilityOffIcon sx={{ fontSize: 16 }} /> : <VisibilityIcon sx={{ fontSize: 16 }} />}
+                                                onClick={() => handleViewInline(doc.pdf)}
                                                 size="small"
                                                 sx={{
-                                                    backgroundColor: '#c62828',
                                                     textTransform: 'none',
                                                     fontWeight: 600,
                                                     borderRadius: 2,
-                                                    fontSize: '0.78rem',
-                                                    boxShadow: 'none',
-                                                    px: 2,
+                                                    fontSize: '0.72rem',
+                                                    borderColor: isActive
+                                                        ? (isDark ? '#66bb6a' : '#2e7d32')
+                                                        : (isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)'),
+                                                    color: isActive
+                                                        ? (isDark ? '#66bb6a' : '#2e7d32')
+                                                        : 'text.secondary',
                                                     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                                     '&:hover': {
-                                                        backgroundColor: '#8e0000',
-                                                        boxShadow: '0 4px 16px rgba(198,40,40,0.3)',
-                                                        transform: 'translateY(-1px)',
+                                                        borderColor: isDark ? '#66bb6a' : '#2e7d32',
+                                                        color: isDark ? '#66bb6a' : '#2e7d32',
+                                                        backgroundColor: isDark ? 'rgba(102,187,106,0.08)' : 'rgba(46,125,50,0.06)',
                                                     },
                                                 }}
                                             >
-                                                PDF
-                                            </Button>
-                                            <Button
-                                                variant="contained"
-                                                startIcon={<ArticleIcon />}
-                                                href={doc.docx}
-                                                download
-                                                size="small"
-                                                sx={{
-                                                    backgroundColor: '#1565c0',
-                                                    textTransform: 'none',
-                                                    fontWeight: 600,
-                                                    borderRadius: 2,
-                                                    fontSize: '0.78rem',
-                                                    boxShadow: 'none',
-                                                    px: 2,
-                                                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-                                                    '&:hover': {
-                                                        backgroundColor: '#003c8f',
-                                                        boxShadow: '0 4px 16px rgba(21,101,192,0.3)',
-                                                        transform: 'translateY(-1px)',
-                                                    },
-                                                }}
-                                            >
-                                                DOCX
+                                                {isActive ? 'Hide Preview' : 'View Inline'}
                                             </Button>
                                         </Stack>
                                     </Box>
                                 </CardContent>
                             </Card>
-                        ))}
+                            )
+                        })}
                     </Stack>
                 </Grid>
 
@@ -250,6 +298,35 @@ export default function ResumeSection() {
                     </Stack>
                 </Grid>
             </Grid>
+
+            <Collapse in={inlinePdf !== null} timeout={400} unmountOnExit>
+                <Box
+                    ref={embedRef}
+                    sx={{
+                        mt: 4,
+                        borderRadius: 3,
+                        overflow: 'hidden',
+                        border: '1px solid',
+                        borderColor: isDark ? 'rgba(46,125,50,0.2)' : 'rgba(46,125,50,0.15)',
+                        boxShadow: isDark
+                            ? '0 8px 32px rgba(0,0,0,0.4)'
+                            : '0 8px 32px rgba(0,0,0,0.08)',
+                    }}
+                >
+                    {inlinePdf && (
+                        <iframe
+                            src={inlinePdf}
+                            title="PDF Preview"
+                            style={{
+                                width: '100%',
+                                height: '80vh',
+                                border: 'none',
+                                display: 'block',
+                            }}
+                        />
+                    )}
+                </Box>
+            </Collapse>
         </Section>
     )
 }
