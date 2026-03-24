@@ -105,7 +105,7 @@ export default function AppHeader() {
                                     onClick={(e) => handleNavClick(e, link.href.slice(1))}
                                     size="small"
                                     sx={{
-                                        color: isActive ? '#2e7d32' : 'text.secondary',
+                                        color: isActive ? (isDark ? '#66bb6a' : '#2e7d32') : 'text.secondary',
                                         fontWeight: isActive ? 600 : 400,
                                         fontSize: '0.82rem',
                                         textTransform: 'none',
@@ -124,14 +124,15 @@ export default function AppHeader() {
                                             transform: isActive ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
                                             width: '60%',
                                             height: '1.5px',
-                                            backgroundColor: '#2e7d32',
-                                            transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                            backgroundColor: isActive ? (isDark ? '#66bb6a' : '#2e7d32') : (isDark ? '#ff9d3f' : '#e65100'),
+                                            transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                         },
                                         '&:hover': {
-                                            color: '#2e7d32',
+                                            color: isDark ? '#ff9d3f' : '#e65100',
                                             backgroundColor: 'transparent',
                                             '&::after': {
                                                 transform: 'translateX(-50%) scaleX(1)',
+                                                backgroundColor: isDark ? '#ff9d3f' : '#e65100',
                                             },
                                         },
                                     }}
@@ -174,7 +175,7 @@ export default function AppHeader() {
                                 key={link.href}
                                 onClick={(e) => handleNavClick(e, link.href.slice(1))}
                                 sx={{
-                                    color: activeId === link.href.slice(1) ? '#2e7d32' : 'text.secondary',
+                                    color: activeId === link.href.slice(1) ? (isDark ? '#66bb6a' : '#2e7d32') : 'text.secondary',
                                     fontWeight: activeId === link.href.slice(1) ? 600 : 400,
                                     fontSize: '0.9rem',
                                     textTransform: 'none',
@@ -185,8 +186,8 @@ export default function AppHeader() {
                                     letterSpacing: '0.02em',
                                     transition: 'all 0.15s ease',
                                     '&:hover': {
-                                        color: '#2e7d32',
-                                        backgroundColor: 'rgba(46,125,50,0.06)',
+                                        color: isDark ? '#ff9d3f' : '#e65100',
+                                        backgroundColor: isDark ? 'rgba(255,157,63,0.08)' : 'rgba(230,81,0,0.06)',
                                     },
                                 }}
                             >
