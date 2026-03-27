@@ -17,9 +17,11 @@ Open `http://localhost:5173` to see the site. Edit `src/data.json` and the page 
 
 Everything you need to personalize lives in **`src/data.json`**. The file is organized to match the flow of the website from top to bottom. No component code changes are needed for content updates.
 
+**Everything is optional.** Sections with empty arrays (`[]`) are automatically hidden, and their nav links are removed from the header. Fields like `pdf`, `docx`, `bio`, `focus`, `honors`, `live`, and `links` can be omitted or set to `null` — the UI adapts gracefully.
+
 ### Name & Tagline
 
-The `name` appears in the header, footer, and hero section. The `tags` array is joined with dots as a subtitle.
+The `name` appears in the header, footer, and hero section. The `tags` array is joined with dots as a subtitle. Pass an empty array to hide the subtitle.
 
 ```json
 {
@@ -39,8 +41,8 @@ Two hex values control the entire color scheme across both light and dark modes.
 }
 ```
 
-- **`primary`** — Used for section titles, active nav items, icons, card hover borders, stat values, timeline dots, and the "Call Me" / "Live Demo" buttons. The default green (`#2e7d32`) produces a light variant for dark mode and a dark variant for headings automatically.
-- **`accent`** — Used for the section underline bar, subtitles, nav hover color, "Email Me" button, and job focus text. The default orange (`#e65100`) gives a warm contrast.
+- **`primary`** — Used for section titles, active nav items, icons, card hover borders, stat values, timeline dots, and the "Live Demo" buttons. The default green (`#2e7d32`) produces a light variant for dark mode and a dark variant for headings automatically.
+- **`accent`** — Used for the section underline bar, subtitles, nav hover color, and job focus text. The default orange (`#e65100`) gives a warm contrast.
 
 Try these combinations to get a feel for it:
 
@@ -51,9 +53,17 @@ Try these combinations to get a feel for it:
 | Purple/teal | `#6a1b9a` | `#00838f` |
 | Slate/amber | `#37474f` | `#ff8f00` |
 
+### Bio
+
+The bio paragraph in the About section. Omit or set to `""` to hide it.
+
+```json
+"bio": "A short paragraph about yourself."
+```
+
 ### About Stats
 
-The four stat cards in the About section. Each takes an icon name, a display value, and a label.
+Stat cards in the About section. Each takes an icon name, a display value, and a label. Pass an empty array to hide the stats grid entirely — the bio will expand to full width.
 
 ```json
 "stats": [
@@ -64,7 +74,7 @@ The four stat cards in the About section. Each takes an icon name, a display val
 
 ### Skills
 
-Groups of skills displayed as chip tags in a responsive grid. Each group has a title, an icon, and an array of skill names. Add or remove groups as needed.
+Groups of skills displayed as chip tags in a responsive grid. Each group has a title, an icon, and an array of skill names. Pass an empty array to hide the entire Skills section.
 
 ```json
 "skillGroups": [
@@ -78,7 +88,7 @@ Groups of skills displayed as chip tags in a responsive grid. Each group has a t
 
 ### Work History
 
-Jobs are displayed as cards with bullet points. Set `current: true` for your current role to show a "Current" badge. The `focus` field is optional and appears as a secondary subtitle.
+Jobs are displayed as cards with bullet points. Set `current: true` for your current role to show a "Current" badge. The `focus` field is optional. Pass an empty array to hide the entire Work section.
 
 ```json
 "jobs": [
@@ -99,7 +109,7 @@ Jobs are displayed as cards with bullet points. Set `current: true` for your cur
 
 ### Projects
 
-Each project card shows a description, tech stack chips, and action buttons. Set `privateRepo: true` to show a lock icon instead of a clickable GitHub link. Use `live` for a live demo URL (or `null`). The `links` array adds extra buttons for things like API docs.
+Each project card shows a description, tech stack chips, and action buttons. Set `privateRepo: true` to show a lock icon instead of a clickable GitHub link. Use `live` for a live demo URL (or `null`). The `links` array adds extra buttons. Pass an empty array to hide the entire Projects section.
 
 ```json
 "projects": [
@@ -119,7 +129,7 @@ Each project card shows a description, tech stack chips, and action buttons. Set
 
 ### Education
 
-Schools are displayed on a vertical timeline. The `honors` field is optional — when present, it shows a glowing gold badge.
+Schools are displayed on a vertical timeline. The `honors` field is optional — when present, it shows a glowing gold badge. Pass an empty array to hide the entire Education section.
 
 ```json
 "schools": [
@@ -135,7 +145,7 @@ Schools are displayed on a vertical timeline. The `honors` field is optional —
 
 ### Documents
 
-Downloadable resume/cover letter cards with PDF and DOCX buttons, plus an inline PDF viewer. Place your files in the `public/documents/` folder and reference them with paths starting from `/`.
+Downloadable resume/cover letter cards. Both `pdf` and `docx` are optional — only the buttons for provided formats are shown. The "View Inline" button only appears when a `pdf` is provided. The `icon` and `description` fields are also optional. Place your files in the `public/documents/` folder and reference them with paths starting from `/`.
 
 ```json
 "documents": [
@@ -145,13 +155,19 @@ Downloadable resume/cover letter cards with PDF and DOCX buttons, plus an inline
         "description": "My full professional resume.",
         "pdf": "/documents/YourName_Resume.pdf",
         "docx": "/documents/YourName_Resume.docx"
+    },
+    {
+        "title": "Cover Letter",
+        "pdf": "/documents/YourName_Cover.pdf"
     }
 ]
 ```
 
 ### Contacts
 
-Contact cards used in both the Contact section and the Resume section sidebar. The `href` determines the link behavior (`tel:`, `mailto:`, or `https://`).
+Contact entries appear as buttons in the About hero section and as cards in the Resume section sidebar. The `href` determines the link behavior (`tel:`, `mailto:`, or `https://`).
+
+Contacts with the label `"LinkedIn"` or `"GitHub"` automatically get brand-colored contained buttons in the About section. All other contacts render as outlined buttons using the theme colors (`mailto:` links use the accent color, everything else uses primary).
 
 ```json
 "contacts": [
@@ -160,6 +176,12 @@ Contact cards used in both the Contact section and the Resume section sidebar. T
         "label": "Phone",
         "value": "(555) 123-4567",
         "href": "tel:+15551234567"
+    },
+    {
+        "icon": "GitHub",
+        "label": "GitHub",
+        "value": "your-username",
+        "href": "https://github.com/your-username"
     },
     {
         "icon": "Email",

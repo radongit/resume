@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
@@ -19,23 +19,27 @@ import data from '../data.json'
 const HEADER_HEIGHT_MOBILE = 56
 const HEADER_HEIGHT_DESKTOP = 64
 
-const links = [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Work', href: '#work' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Education', href: '#education' },
-    { label: 'Resume', href: '#resume' },
-]
-
 export default function AppHeader() {
     const [menuOpen, setMenuOpen] = useState(false)
     const appBarRef = useRef<HTMLDivElement>(null)
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.down('md'))
-    const activeId = useScrollSpy(links.map(l => l.href.slice(1)))
     const { toggleColorMode } = useColorMode()
     const isDark = theme.palette.mode === 'dark'
+
+    const links = useMemo(() => {
+        const all = [
+            { label: 'About', href: '#about', show: true },
+            { label: 'Skills', href: '#skills', show: data.skillGroups.length > 0 },
+            { label: 'Work', href: '#work', show: data.jobs.length > 0 },
+            { label: 'Projects', href: '#projects', show: data.projects.length > 0 },
+            { label: 'Education', href: '#education', show: data.schools.length > 0 },
+            { label: 'Resume', href: '#resume', show: data.documents.length > 0 || data.contacts.length > 0 },
+        ]
+        return all.filter(l => l.show)
+    }, [])
+
+    const activeId = useScrollSpy(links.map(l => l.href.slice(1)))
 
     const handleNavClick = useCallback((e: React.MouseEvent, id: string) => {
         e.preventDefault()

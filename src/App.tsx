@@ -6,6 +6,7 @@ import ProjectsSection from './components/ProjectsSection'
 import EducationSection from './components/EducationSection'
 import ResumeSection from './components/ResumeSection'
 import AppFooter from './components/AppFooter'
+import data from './data.json'
 
 export default function App() {
   return (
@@ -13,11 +14,11 @@ export default function App() {
       <AppHeader />
       <main>
         <AboutSection />
-        <SkillsSection />
-        <WorkSection />
-        <ProjectsSection />
-        <EducationSection />
-        <ResumeSection />
+        {data.skillGroups.length > 0 && <SkillsSection />}
+        {data.jobs.length > 0 && <WorkSection />}
+        {data.projects.length > 0 && <ProjectsSection />}
+        {data.schools.length > 0 && <EducationSection />}
+        {(data.documents.length > 0 || data.contacts.length > 0) && <ResumeSection />}
       </main>
       <AppFooter />
     </>

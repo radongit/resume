@@ -5,6 +5,7 @@
         "primary": "#2e7d32",
         "accent": "#e65100"
     },
+    "bio": "I am a full stack developer with over 7 years of experience building web applications and services. I have a passion for learning new technologies and solving complex problems. In my long career, I have worked on a wide range of projects, from small business websites to large-scale enterprise applications, and have experience running an IT deparment as a director as well as working with a team.",
     "stats": [
         { "icon": "Work", "value": "7+", "label": "Years Experience" },
         { "icon": "Code", "value": "10+", "label": "Languages" },
@@ -168,6 +169,12 @@
             "label": "Phone",
             "value": "(706) 992-9059",
             "href": "tel:+17069929059"
+        },
+        {
+            "icon": "GitHub",
+            "label": "GitHub",
+            "value": "radongit",
+            "href": "https://github.com/radongit"
         },
         {
             "icon": "Email",
