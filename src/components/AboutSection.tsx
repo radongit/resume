@@ -18,7 +18,7 @@ export default function AboutSection() {
     const isDark = theme.palette.mode === 'dark'
 
     return (
-        <Section id="about" title="Robinson Davis" subtitle="Husband · Father · Full-Stack Developer">
+        <Section id="about" title={data.name} subtitle={data.tags.join(' · ')}>
             <Grid container spacing={{ xs: 5, md: 8 }}>
                 <Grid size={{ xs: 12, md: 7 }}>
                     <Typography
