@@ -44,6 +44,8 @@ Two hex values control the entire color scheme across both light and dark modes.
 - **`primary`** — Used for section titles, active nav items, icons, card hover borders, stat values, timeline dots, and the "Live Demo" buttons. The default green (`#2e7d32`) produces a light variant for dark mode and a dark variant for headings automatically.
 - **`accent`** — Used for the section underline bar, subtitles, nav hover color, and job focus text. The default orange (`#e65100`) gives a warm contrast.
 
+**Theme Builder**: Navigate to `/#/colors` (e.g. `http://localhost:5173/#/colors`) for an interactive color picker that shows a live side-by-side preview of your chosen colors in both light and dark mode — complete with headers, buttons, chips, cards, and timeline elements. It generates a copy-ready JSON snippet you can paste directly into `data.json`.
+
 Try these combinations to get a feel for it:
 
 | Style | Primary | Accent |

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import AppHeader from './components/AppHeader'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
@@ -6,9 +7,26 @@ import ProjectsSection from './components/ProjectsSection'
 import EducationSection from './components/EducationSection'
 import ResumeSection from './components/ResumeSection'
 import AppFooter from './components/AppFooter'
+import ColorPickerPage from './components/ColorPickerPage'
 import data from './data.json'
 
+function getRoute() {
+  const hash = window.location.hash
+  if (hash === '#/colors') return 'colors'
+  return 'home'
+}
+
 export default function App() {
+  const [route, setRoute] = useState(getRoute)
+
+  useEffect(() => {
+    const onHashChange = () => setRoute(getRoute())
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
+  if (route === 'colors') return <ColorPickerPage />
+
   return (
     <>
       <AppHeader />
