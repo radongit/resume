@@ -8,7 +8,7 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import LaunchIcon from '@mui/icons-material/Launch'
 import LinkIcon from '@mui/icons-material/Link'
 import LockIcon from '@mui/icons-material/Lock'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, alpha } from '@mui/material/styles'
 import Section from './Section'
 import data from '../data.json'
 
@@ -33,7 +33,7 @@ export default function ProjectsSection() {
                             boxShadow: isDark
                                 ? '0 8px 32px rgba(0,0,0,0.3)'
                                 : '0 8px 32px rgba(0,0,0,0.06)',
-                            borderColor: isDark ? 'rgba(46,125,50,0.15)' : 'rgba(46,125,50,0.12)',
+                            borderColor: isDark ? alpha(theme.palette.primary.main, 0.15) : alpha(theme.palette.primary.main, 0.12),
                         },
                         '& + &': { mt: 2.5 },
                     }}
@@ -109,13 +109,13 @@ export default function ProjectsSection() {
                                                 textTransform: 'none',
                                                 fontWeight: 500,
                                                 fontSize: '0.82rem',
-                                                color: '#2e7d32',
-                                                borderColor: 'rgba(46,125,50,0.3)',
+                                                color: theme.palette.primary.main,
+                                                borderColor: alpha(theme.palette.primary.main, 0.3),
                                                 borderRadius: 2,
                                                 letterSpacing: '0.02em',
                                                 '&:hover': {
-                                                    backgroundColor: 'rgba(46,125,50,0.06)',
-                                                    borderColor: '#2e7d32',
+                                                    backgroundColor: alpha(theme.palette.primary.main, 0.06),
+                                                    borderColor: theme.palette.primary.main,
                                                 },
                                             }}
                                         >

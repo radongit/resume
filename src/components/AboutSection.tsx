@@ -8,7 +8,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, alpha } from '@mui/material/styles'
 import Section from './Section'
 import Icon from '../iconMap'
 import data from '../data.json'
@@ -92,8 +92,8 @@ export default function AboutSection() {
                             href="mailto:rdavis334@gmail.com"
                             sx={{
                                 minWidth: 150,
-                                borderColor: isDark ? 'rgba(230,81,0,0.4)' : 'rgba(230,81,0,0.3)',
-                                color: '#e65100',
+                                borderColor: isDark ? alpha(theme.palette.secondary.main, 0.4) : alpha(theme.palette.secondary.main, 0.3),
+                                color: theme.palette.secondary.main,
                                 textTransform: 'none',
                                 fontWeight: 600,
                                 borderRadius: 2,
@@ -102,8 +102,8 @@ export default function AboutSection() {
                                 fontSize: '0.875rem',
                                 transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                 '&:hover': {
-                                    backgroundColor: 'rgba(230,81,0,0.06)',
-                                    borderColor: '#e65100',
+                                    backgroundColor: alpha(theme.palette.secondary.main, 0.06),
+                                    borderColor: theme.palette.secondary.main,
                                     transform: 'translateY(-1px)',
                                 },
                             }}
@@ -116,8 +116,8 @@ export default function AboutSection() {
                             href="tel:+17069909059"
                             sx={{
                                 minWidth: 150,
-                                borderColor: isDark ? 'rgba(46,125,50,0.4)' : 'rgba(46,125,50,0.3)',
-                                color: '#2e7d32',
+                                borderColor: isDark ? alpha(theme.palette.primary.main, 0.4) : alpha(theme.palette.primary.main, 0.3),
+                                color: theme.palette.primary.main,
                                 textTransform: 'none',
                                 fontWeight: 600,
                                 borderRadius: 2,
@@ -126,8 +126,8 @@ export default function AboutSection() {
                                 fontSize: '0.875rem',
                                 transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                 '&:hover': {
-                                    backgroundColor: 'rgba(46,125,50,0.06)',
-                                    borderColor: '#2e7d32',
+                                    backgroundColor: alpha(theme.palette.primary.main, 0.06),
+                                    borderColor: theme.palette.primary.main,
                                     transform: 'translateY(-1px)',
                                 },
                             }}
@@ -157,11 +157,11 @@ export default function AboutSection() {
                                             boxShadow: isDark
                                                 ? '0 12px 40px rgba(0,0,0,0.4)'
                                                 : '0 12px 40px rgba(0,0,0,0.06)',
-                                            borderColor: isDark ? 'rgba(46,125,50,0.2)' : 'rgba(46,125,50,0.15)',
+                                            borderColor: isDark ? alpha(theme.palette.primary.main, 0.2) : alpha(theme.palette.primary.main, 0.15),
                                         },
                                     }}
                                 >
-                                    <Box sx={{ color: isDark ? '#66bb6a' : '#2e7d32', mb: 1.5, display: 'flex', justifyContent: 'center', opacity: 0.8 }}>
+                                    <Box sx={{ color: isDark ? theme.palette.primary.light : theme.palette.primary.main, mb: 1.5, display: 'flex', justifyContent: 'center', opacity: 0.8 }}>
                                         <Icon name={stat.icon} />
                                     </Box>
                                     <Typography
@@ -170,7 +170,7 @@ export default function AboutSection() {
                                             fontFamily: '"Archivo", sans-serif',
                                             fontWeight: 800,
                                             fontSize: '2.25rem',
-                                            color: isDark ? '#c8e6c9' : '#1b5e20',
+                                            color: isDark ? theme.palette.primary.light : theme.palette.primary.dark,
                                             lineHeight: 1,
                                         }}
                                     >

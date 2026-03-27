@@ -1,6 +1,10 @@
 {
     "name": "Robinson Davis",
     "tags": ["Husband", "Father", "Full-Stack Developer"],
+    "theme": {
+        "primary": "#2e7d32",
+        "accent": "#e65100"
+    },
     "jobs": [
         {
             "company": "Global Call Center Solutions",

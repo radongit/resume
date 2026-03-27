@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Chip from '@mui/material/Chip'
 import Grid from '@mui/material/Grid'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, alpha } from '@mui/material/styles'
 import Section from './Section'
 import Icon from '../iconMap'
 import data from '../data.json'
@@ -32,14 +32,14 @@ export default function SkillsSection() {
                                         ? '0 8px 32px rgba(0,0,0,0.3)'
                                         : '0 8px 32px rgba(0,0,0,0.06)',
                                     transform: 'translateY(-3px)',
-                                    borderColor: isDark ? 'rgba(46,125,50,0.15)' : 'rgba(46,125,50,0.12)',
+                                    borderColor: isDark ? alpha(theme.palette.primary.main, 0.15) : alpha(theme.palette.primary.main, 0.12),
                                 },
                             }}
                         >
                             <CardContent sx={{ p: 3, '&:last-child': { pb: 3 } }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2.5 }}>
                                     <Box sx={{
-                                        color: isDark ? '#66bb6a' : '#2e7d32',
+                                        color: isDark ? theme.palette.primary.light : theme.palette.primary.main,
                                         display: 'flex',
                                         opacity: 0.75,
                                     }}>

@@ -11,7 +11,7 @@ import Stack from '@mui/material/Stack'
 import Box from '@mui/material/Box'
 import PlaceIcon from '@mui/icons-material/Place'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, alpha } from '@mui/material/styles'
 import Section from './Section'
 import data from '../data.json'
 
@@ -37,7 +37,7 @@ export default function WorkSection() {
                                     ? '0 8px 32px rgba(0,0,0,0.3)'
                                     : '0 8px 32px rgba(0,0,0,0.06)',
                                 transform: 'translateY(-2px)',
-                                borderColor: isDark ? 'rgba(46,125,50,0.15)' : 'rgba(46,125,50,0.12)',
+                                borderColor: isDark ? alpha(theme.palette.primary.main, 0.15) : alpha(theme.palette.primary.main, 0.12),
                             },
                         }}
                     >
@@ -76,7 +76,7 @@ export default function WorkSection() {
                                 <Typography
                                     variant="body2"
                                     sx={{
-                                        color: isDark ? 'rgba(230,81,0,0.7)' : 'rgba(230,81,0,0.8)',
+                                        color: isDark ? alpha(theme.palette.secondary.main, 0.7) : alpha(theme.palette.secondary.main, 0.8),
                                         fontWeight: 500,
                                         fontSize: '0.85rem',
                                         mt: 0.25,
@@ -92,7 +92,7 @@ export default function WorkSection() {
                             <List dense sx={{ mt: 2 }}>
                                 {job.bullets.map((bullet, i) => (
                                     <ListItem key={i} sx={{ px: 0, py: 0.4 }}>
-                                        <ListItemIcon sx={{ minWidth: 24, color: isDark ? '#66bb6a' : '#2e7d32', opacity: 0.6 }}>
+                                        <ListItemIcon sx={{ minWidth: 24, color: isDark ? theme.palette.primary.light : theme.palette.primary.main, opacity: 0.6 }}>
                                             <ChevronRightIcon sx={{ fontSize: 16 }} />
                                         </ListItemIcon>
                                         <ListItemText

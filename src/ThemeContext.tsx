@@ -1,7 +1,10 @@
 import { createContext, useContext, useMemo, useState } from 'react'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-
+import { ThemeProvider, createTheme, alpha } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
+import data from './data.json'
+
+const primary = data.theme.primary
+const accent = data.theme.accent
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} })
 
@@ -19,7 +22,7 @@ const getTheme = (mode: 'light' | 'dark') =>
                         transition: 'background-color 0.3s ease, color 0.3s ease',
                     },
                     '::selection': {
-                        backgroundColor: 'rgba(46,125,50,0.2)',
+                        backgroundColor: alpha(primary, 0.2),
                         color: 'inherit',
                     },
                 },
@@ -40,33 +43,33 @@ const getTheme = (mode: 'light' | 'dark') =>
                                 : '0 3px 8px rgba(0,0,0,0.3)',
                         },
                         '&.MuiChip-filled:not(.MuiChip-colorPrimary):not(.MuiChip-colorSecondary)': {
-                            backgroundColor: mode === 'light' ? 'rgba(46,125,50,0.06)' : 'rgba(255,255,255,0.07)',
+                            backgroundColor: mode === 'light' ? alpha(primary, 0.06) : 'rgba(255,255,255,0.07)',
                             color: mode === 'light' ? '#37474f' : '#b0bec5',
-                            border: `1px solid ${mode === 'light' ? 'rgba(46,125,50,0.1)' : 'rgba(255,255,255,0.06)'}`,
+                            border: `1px solid ${mode === 'light' ? alpha(primary, 0.1) : 'rgba(255,255,255,0.06)'}`,
                         },
                         '&.MuiChip-outlined:not(.MuiChip-colorPrimary):not(.MuiChip-colorSecondary)': {
                             borderColor: mode === 'light' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.12)',
                             color: mode === 'light' ? '#546e7a' : '#90a4ae',
                         },
                         '&.MuiChip-colorPrimary': {
-                            backgroundColor: '#2e7d32',
+                            backgroundColor: primary,
                             color: '#fff',
                             fontWeight: 600,
                         },
                         '&.MuiChip-colorPrimary.MuiChip-outlined': {
                             backgroundColor: 'transparent',
-                            borderColor: '#2e7d32',
-                            color: '#2e7d32',
+                            borderColor: primary,
+                            color: primary,
                         },
                         '&.MuiChip-colorSecondary': {
-                            backgroundColor: '#e65100',
+                            backgroundColor: accent,
                             color: '#fff',
                             fontWeight: 600,
                         },
                         '&.MuiChip-colorSecondary.MuiChip-outlined': {
                             backgroundColor: 'transparent',
-                            borderColor: '#e65100',
-                            color: '#e65100',
+                            borderColor: accent,
+                            color: accent,
                         },
                     },
                 },
@@ -90,10 +93,10 @@ const getTheme = (mode: 'light' | 'dark') =>
         palette: {
             mode,
             primary: {
-                main: '#2e7d32',
+                main: primary,
             },
             secondary: {
-                main: '#e65100',
+                main: accent,
             },
             background: {
                 default: mode === 'light' ? '#ffffff' : '#0e0e0e',

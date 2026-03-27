@@ -11,9 +11,10 @@ import CloseIcon from '@mui/icons-material/Close'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, alpha } from '@mui/material/styles'
 import { useColorMode } from '../ThemeContext'
 import useScrollSpy from '../hooks/useScrollSpy'
+import data from '../data.json'
 
 const HEADER_HEIGHT_MOBILE = 56
 const HEADER_HEIGHT_DESKTOP = 64
@@ -40,9 +41,6 @@ export default function AppHeader() {
         e.preventDefault()
         const el = document.getElementById(id)
         if (!el) return
-        // Use the current header height (including open menu if applicable).
-        // As the menu collapses, content shifts up by the same amount the header
-        // shrinks, so the scroll target stays correct throughout the animation.
         const headerHeight = appBarRef.current?.offsetHeight ?? HEADER_HEIGHT_DESKTOP
         const top = el.getBoundingClientRect().top + window.scrollY - headerHeight
         setMenuOpen(false)
@@ -73,7 +71,7 @@ export default function AppHeader() {
                         letterSpacing: '-0.02em',
                     }}
                 >
-                    Robinson Davis
+                    {data.name}
                 </Typography>
 
                 {isMobile ? (
@@ -105,7 +103,7 @@ export default function AppHeader() {
                                     onClick={(e) => handleNavClick(e, link.href.slice(1))}
                                     size="small"
                                     sx={{
-                                        color: isActive ? (isDark ? '#66bb6a' : '#2e7d32') : 'text.secondary',
+                                        color: isActive ? (isDark ? theme.palette.primary.light : theme.palette.primary.main) : 'text.secondary',
                                         fontWeight: 400,
                                         textShadow: isActive ? '0 0 .01px currentColor, 0 0 .01px currentColor' : 'none',
                                         fontSize: '0.82rem',
@@ -125,15 +123,15 @@ export default function AppHeader() {
                                             transform: isActive ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
                                             width: '60%',
                                             height: '1.5px',
-                                            backgroundColor: isDark ? '#66bb6a' : '#2e7d32',
+                                            backgroundColor: isDark ? theme.palette.primary.light : theme.palette.primary.main,
                                             transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                         },
                                         '&:hover': {
-                                            color: isDark ? '#ff9d3f' : '#e65100',
+                                            color: isDark ? theme.palette.secondary.light : theme.palette.secondary.main,
                                             backgroundColor: 'transparent',
                                             '&::after': {
                                                 transform: 'translateX(-50%) scaleX(1)',
-                                                backgroundColor: isDark ? '#ff9d3f' : '#e65100',
+                                                backgroundColor: isDark ? theme.palette.secondary.light : theme.palette.secondary.main,
                                             },
                                         },
                                     }}
@@ -176,7 +174,7 @@ export default function AppHeader() {
                                 key={link.href}
                                 onClick={(e) => handleNavClick(e, link.href.slice(1))}
                                 sx={{
-                                    color: activeId === link.href.slice(1) ? (isDark ? '#66bb6a' : '#2e7d32') : 'text.secondary',
+                                    color: activeId === link.href.slice(1) ? (isDark ? theme.palette.primary.light : theme.palette.primary.main) : 'text.secondary',
                                     fontWeight: activeId === link.href.slice(1) ? 600 : 400,
                                     fontSize: '0.9rem',
                                     textTransform: 'none',
@@ -187,8 +185,8 @@ export default function AppHeader() {
                                     letterSpacing: '0.02em',
                                     transition: 'all 0.15s ease',
                                     '&:hover': {
-                                        color: isDark ? '#ff9d3f' : '#e65100',
-                                        backgroundColor: isDark ? 'rgba(255,157,63,0.08)' : 'rgba(230,81,0,0.06)',
+                                        color: isDark ? theme.palette.secondary.light : theme.palette.secondary.main,
+                                        backgroundColor: isDark ? alpha(theme.palette.secondary.light, 0.08) : alpha(theme.palette.secondary.main, 0.06),
                                     },
                                 }}
                             >

@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, alpha } from '@mui/material/styles'
 
 interface SectionProps {
     id: string
@@ -42,7 +42,7 @@ export default function Section({ id, title, subtitle, children, alternate = fal
                             fontWeight: 800,
                             letterSpacing: '-0.02em',
                             lineHeight: 1.1,
-                            color: isDark ? '#c8e6c9' : '#1b5e20',
+                            color: isDark ? theme.palette.primary.light : theme.palette.primary.dark,
                             position: 'relative',
                         }}
                     >
@@ -53,7 +53,7 @@ export default function Section({ id, title, subtitle, children, alternate = fal
                             mt: 2,
                             width: 40,
                             height: 2,
-                            background: '#e65100',
+                            background: theme.palette.secondary.main,
                             opacity: 0.8,
                         }}
                     />
@@ -62,7 +62,7 @@ export default function Section({ id, title, subtitle, children, alternate = fal
                             variant="subtitle1"
                             sx={{
                                 mt: 2.5,
-                                color: isDark ? 'rgba(230,81,0,0.8)' : 'rgba(230,81,0,0.7)',
+                                color: isDark ? alpha(theme.palette.secondary.main, 0.8) : alpha(theme.palette.secondary.main, 0.7),
                                 fontWeight: 500,
                                 fontSize: '0.85rem',
                                 letterSpacing: '0.14em',

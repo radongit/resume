@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material/styles'
+import data from '../data.json'
 
 export default function AppFooter() {
     const theme = useTheme()
@@ -30,7 +31,7 @@ export default function AppFooter() {
                     letterSpacing: '-0.01em',
                 }}
             >
-                Robinson Davis
+                {data.name}
             </Typography>
         </Box>
     )
