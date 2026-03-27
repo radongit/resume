@@ -106,7 +106,8 @@ export default function AppHeader() {
                                     size="small"
                                     sx={{
                                         color: isActive ? (isDark ? '#66bb6a' : '#2e7d32') : 'text.secondary',
-                                        fontWeight: isActive ? 600 : 400,
+                                        fontWeight: 400,
+                                        textShadow: isActive ? '0 0 .01px currentColor, 0 0 .01px currentColor' : 'none',
                                         fontSize: '0.82rem',
                                         textTransform: 'none',
                                         borderRadius: 1.5,
@@ -124,7 +125,7 @@ export default function AppHeader() {
                                             transform: isActive ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
                                             width: '60%',
                                             height: '1.5px',
-                                            backgroundColor: isActive ? (isDark ? '#66bb6a' : '#2e7d32') : (isDark ? '#ff9d3f' : '#e65100'),
+                                            backgroundColor: isDark ? '#66bb6a' : '#2e7d32',
                                             transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                         },
                                         '&:hover': {
