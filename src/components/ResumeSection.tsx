@@ -7,63 +7,14 @@ import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Grid'
 import Collapse from '@mui/material/Collapse'
-import DescriptionIcon from '@mui/icons-material/Description'
-import MailOutlineIcon from '@mui/icons-material/MailOutline'
-import FolderZipIcon from '@mui/icons-material/FolderZip'
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf'
 import ArticleIcon from '@mui/icons-material/Article'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import PhoneIcon from '@mui/icons-material/Phone'
-import EmailIcon from '@mui/icons-material/Email'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import { useTheme } from '@mui/material/styles'
 import Section from './Section'
-
-const documents = [
-    {
-        title: 'Resume',
-        icon: <DescriptionIcon sx={{ fontSize: 24 }} />,
-        description: 'My full professional resume detailing experience, skills, and education.',
-        pdf: '/documents/RobinsonDavis_Resume.pdf',
-        docx: '/documents/RobinsonDavis_Resume.docx',
-    },
-    {
-        title: 'Cover Letter',
-        icon: <MailOutlineIcon sx={{ fontSize: 24 }} />,
-        description: 'A personalized cover letter outlining my background and goals.',
-        pdf: '/documents/RobinsonDavis_Cover.pdf',
-        docx: '/documents/RobinsonDavis_Cover.docx',
-    },
-    {
-        title: 'Both',
-        icon: <FolderZipIcon sx={{ fontSize: 24 }} />,
-        description: 'Download both my resume and cover letter bundled together.',
-        pdf: '/documents/RobinsonDavis_ResumeCover.pdf',
-        docx: '/documents/RobinsonDavis_ResumeCover.docx',
-    },
-]
-
-const contacts = [
-    {
-        icon: <PhoneIcon sx={{ fontSize: 24 }} />,
-        label: 'Phone',
-        value: '(706) 992-9059',
-        href: 'tel:+17069929059',
-    },
-    {
-        icon: <EmailIcon sx={{ fontSize: 24 }} />,
-        label: 'Email',
-        value: 'rdavis334@gmail.com',
-        href: 'mailto:rdavis334@gmail.com',
-    },
-    {
-        icon: <LinkedInIcon sx={{ fontSize: 24 }} />,
-        label: 'LinkedIn',
-        value: 'robinson-a-davis',
-        href: 'https://linkedin.com/in/robinson-a-davis',
-    },
-]
+import Icon from '../iconMap'
+import data from '../data.json'
 
 export default function ResumeSection() {
     const theme = useTheme()
@@ -87,7 +38,7 @@ export default function ResumeSection() {
             <Grid container spacing={{ xs: 4, md: 6 }}>
                 <Grid size={{ xs: 12, md: 7 }}>
                     <Stack spacing={2}>
-                        {documents.map(doc => {
+                        {data.documents.map(doc => {
                             const isActive = inlinePdf === doc.pdf
                             return (
                             <Card
@@ -111,7 +62,7 @@ export default function ResumeSection() {
                                 <CardContent sx={{ p: { xs: 2.5, md: 3 }, '&:last-child': { pb: { xs: 2.5, md: 3 } } }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 2, md: 3 }, flexWrap: { xs: 'wrap', sm: 'nowrap' } }}>
                                         <Box sx={{ color: isDark ? '#66bb6a' : '#2e7d32', display: 'flex', opacity: 0.75 }}>
-                                            {doc.icon}
+                                            <Icon name={doc.icon} sx={{ fontSize: 24 }} />
                                         </Box>
                                         <Box sx={{ flex: 1, minWidth: 0 }}>
                                             <Typography
@@ -234,7 +185,7 @@ export default function ResumeSection() {
                         Want to know more?
                     </Typography>
                     <Stack spacing={2}>
-                        {contacts.map(contact => (
+                        {data.contacts.map(contact => (
                             <Card
                                 key={contact.label}
                                 component="a"
@@ -267,7 +218,7 @@ export default function ResumeSection() {
                                     display: 'flex',
                                     opacity: 0.7,
                                 }}>
-                                    {contact.icon}
+                                    <Icon name={contact.icon} sx={{ fontSize: 24 }} />
                                 </Box>
                                 <Box>
                                     <Typography

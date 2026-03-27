@@ -8,19 +8,10 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
-import CodeIcon from '@mui/icons-material/Code'
-import WorkIcon from '@mui/icons-material/Work'
-import SchoolIcon from '@mui/icons-material/School'
-import BuildIcon from '@mui/icons-material/Build'
 import { useTheme } from '@mui/material/styles'
 import Section from './Section'
-
-const stats = [
-    { icon: <WorkIcon />, value: '7+', label: 'Years Experience' },
-    { icon: <CodeIcon />, value: '10+', label: 'Languages' },
-    { icon: <BuildIcon />, value: '30+', label: 'Technologies' },
-    { icon: <SchoolIcon />, value: '2', label: 'Degrees' },
-]
+import Icon from '../iconMap'
+import data from '../data.json'
 
 export default function AboutSection() {
     const theme = useTheme()
@@ -148,7 +139,7 @@ export default function AboutSection() {
 
                 <Grid size={{ xs: 12, md: 5 }}>
                     <Grid container spacing={2.5}>
-                        {stats.map(stat => (
+                        {data.stats.map(stat => (
                             <Grid key={stat.label} size={{ xs: 6 }}>
                                 <Card
                                     elevation={0}
@@ -171,7 +162,7 @@ export default function AboutSection() {
                                     }}
                                 >
                                     <Box sx={{ color: isDark ? '#66bb6a' : '#2e7d32', mb: 1.5, display: 'flex', justifyContent: 'center', opacity: 0.8 }}>
-                                        {stat.icon}
+                                        <Icon name={stat.icon} />
                                     </Box>
                                     <Typography
                                         variant="h3"

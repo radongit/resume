@@ -13,35 +13,7 @@ import PlaceIcon from '@mui/icons-material/Place'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import { useTheme } from '@mui/material/styles'
 import Section from './Section'
-
-const jobs = [
-    {
-        company: 'Global Call Center Solutions',
-        title: 'Senior Software Engineer',
-        focus: 'Full Stack Development',
-        location: 'Columbus, GA & Remote',
-        period: 'July 2019 – Present',
-        current: true,
-        bullets: [
-            'Modernized system processes such as implementing Bootstrap, Docker, and Bitbucket pipelines.',
-            'Developed multiple SaaS products for clients that interfaced with in-house CRM giving call center agents the ability to coordinate directly.',
-            'Developed and deployed a partner portal, allowing rapid collaboration between sites.',
-            'Ensured compliance to PACE, SOC, and PCI DSS audtions and FCC regulations.'
-        ],
-    },
-    {
-        company: 'Sample Express',
-        title: 'Director of Information Technology',
-        location: 'West Point, GA',
-        period: 'March 2018 – July 2019',
-        current: false,
-        bullets: [
-            'Lead as Director of Information Technology, responsible for all decisions and solutions.',
-            'Maintained and drastically improved interal CRM and inventory management system, which was critical to the business.',
-            'Deployed a windows domain, bringing user management and security to modern standards.'
-        ],
-    },
-]
+import data from '../data.json'
 
 export default function WorkSection() {
     const theme = useTheme()
@@ -50,7 +22,7 @@ export default function WorkSection() {
     return (
         <Section id="work" title="Work History" subtitle="Where I've Worked, What I've Done">
             <Stack spacing={3}>
-                {jobs.map(job => (
+                {data.jobs.map(job => (
                     <Card
                         key={job.company}
                         elevation={0}

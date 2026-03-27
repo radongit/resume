@@ -10,30 +10,7 @@ import LinkIcon from '@mui/icons-material/Link'
 import LockIcon from '@mui/icons-material/Lock'
 import { useTheme } from '@mui/material/styles'
 import Section from './Section'
-
-const projects = [
-    {
-        title: 'RobinsonDavis.com',
-        description: 'A modern, responsive single-page resume and portfolio site built with the help of Claude AI. Designed to showcase my skills, experience, projects, and attention to detail.',
-        technologies: ['React 19', 'TypeScript', 'MUI 7', 'Vite 8', 'Emotion', 'Claude CLI'],
-        github: 'https://github.com/radongit/resume',
-        privateRepo: false,
-        live: null as string | null,
-        links: [] as { label: string; url: string; download?: boolean }[],
-    },
-    {
-        title: 'StupidTrash.com',
-        description: 'A full-stack e-commerce web application with Stripe payment integration, admin dashboard, and secure authentication system. Built with a React 19 frontend, Node.js and Express 5 backend, PostgreSQL database with Prisma 5 ORM, and deployed on AWS with S3 for storage and SES for email notifications.',
-        technologies: ['React 19', 'TypeScript', 'Node.js', 'Express 5', 'PostgreSQL', 'Prisma 5', 'AWS S3 / SES', 'Stripe 20', 'TailwindCSS 4', 'Vite 7', 'TanStack Query 5', 'Zustand 5', 'React Router 7', 'Swagger / OpenAPI', 'Sharp', 'JWT', 'TOTP 2FA', 'PM2', 'Nginx', 'GitHub Actions CI / CD'],
-        github: 'https://github.com/radongit/stupidtrash',
-        privateRepo: true,
-        live: 'https://stupidtrash.com',
-        links: [
-            { label: 'OpenAPI', url: 'https://stupidtrash.com/api/docs', download: false },
-            { label: 'Postman', url: 'https://stupidtrash.com/api/postman/stupidtrash-api.postman_collection.json', download: true },
-        ],
-    },
-]
+import data from '../data.json'
 
 export default function ProjectsSection() {
     const theme = useTheme()
@@ -41,7 +18,7 @@ export default function ProjectsSection() {
 
     return (
         <Section id="projects" title="Projects" subtitle="Where Lies My Passion" alternate>
-            {projects.map(project => (
+            {data.projects.map(project => (
                 <Card
                     key={project.title}
                     elevation={0}

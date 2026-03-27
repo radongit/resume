@@ -2,32 +2,10 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import Card from '@mui/material/Card'
-import PhoneIcon from '@mui/icons-material/Phone'
-import EmailIcon from '@mui/icons-material/Email'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import { useTheme } from '@mui/material/styles'
 import Section from './Section'
-
-const contacts = [
-    {
-        icon: <PhoneIcon sx={{ fontSize: 24 }} />,
-        label: 'Phone',
-        value: '(706) 992-9059',
-        href: 'tel:+17069929059',
-    },
-    {
-        icon: <EmailIcon sx={{ fontSize: 24 }} />,
-        label: 'Email',
-        value: 'rdavis334@gmail.com',
-        href: 'mailto:rdavis334@gmail.com',
-    },
-    {
-        icon: <LinkedInIcon sx={{ fontSize: 24 }} />,
-        label: 'LinkedIn',
-        value: 'robinson-a-davis',
-        href: 'https://linkedin.com/in/robinson-a-davis',
-    },
-]
+import Icon from '../iconMap'
+import data from '../data.json'
 
 export default function ContactSection() {
     const theme = useTheme()
@@ -36,7 +14,7 @@ export default function ContactSection() {
     return (
         <Section id="contact" title="Contact" subtitle="How To Reach Me" alternate>
             <Stack spacing={2} sx={{ maxWidth: 500 }}>
-                {contacts.map(contact => (
+                {data.contacts.map(contact => (
                     <Card
                         key={contact.label}
                         component="a"
@@ -69,7 +47,7 @@ export default function ContactSection() {
                             display: 'flex',
                             opacity: 0.7,
                         }}>
-                            {contact.icon}
+                            <Icon name={contact.icon} sx={{ fontSize: 24 }} />
                         </Box>
                         <Box>
                             <Typography
