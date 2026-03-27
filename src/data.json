@@ -5,56 +5,11 @@
         "primary": "#2e7d32",
         "accent": "#e65100"
     },
-    "jobs": [
-        {
-            "company": "Global Call Center Solutions",
-            "title": "Senior Software Engineer",
-            "focus": "Full Stack Development",
-            "location": "Columbus, GA & Remote",
-            "period": "July 2019 – Present",
-            "current": true,
-            "bullets": [
-                "Modernized system processes such as implementing Bootstrap, Docker, and Bitbucket pipelines.",
-                "Developed multiple SaaS products for clients that interfaced with in-house CRM giving call center agents the ability to coordinate directly.",
-                "Developed and deployed a partner portal, allowing rapid collaboration between sites.",
-                "Ensured compliance to PACE, SOC, and PCI DSS audtions and FCC regulations."
-            ]
-        },
-        {
-            "company": "Sample Express",
-            "title": "Director of Information Technology",
-            "location": "West Point, GA",
-            "period": "March 2018 – July 2019",
-            "current": false,
-            "bullets": [
-                "Lead as Director of Information Technology, responsible for all decisions and solutions.",
-                "Maintained and drastically improved interal CRM and inventory management system, which was critical to the business.",
-                "Deployed a windows domain, bringing user management and security to modern standards."
-            ]
-        }
-    ],
-    "projects": [
-        {
-            "title": "RobinsonDavis.com",
-            "description": "A modern, responsive single-page resume and portfolio site built with the help of Claude AI. Designed to showcase my skills, experience, projects, and attention to detail.",
-            "technologies": ["React 19", "TypeScript", "MUI 7", "Vite 8", "Emotion", "Claude CLI"],
-            "github": "https://github.com/radongit/resume",
-            "privateRepo": false,
-            "live": null,
-            "links": []
-        },
-        {
-            "title": "StupidTrash.com",
-            "description": "A full-stack e-commerce web application with Stripe payment integration, admin dashboard, and secure authentication system. Built with a React 19 frontend, Node.js and Express 5 backend, PostgreSQL database with Prisma 5 ORM, and deployed on AWS with S3 for storage and SES for email notifications.",
-            "technologies": ["React 19", "TypeScript", "Node.js", "Express 5", "PostgreSQL", "Prisma 5", "AWS S3 / SES", "Stripe 20", "TailwindCSS 4", "Vite 7", "TanStack Query 5", "Zustand 5", "React Router 7", "Swagger / OpenAPI", "Sharp", "JWT", "TOTP 2FA", "PM2", "Nginx", "GitHub Actions CI / CD"],
-            "github": "https://github.com/radongit/stupidtrash",
-            "privateRepo": true,
-            "live": "https://stupidtrash.com",
-            "links": [
-                { "label": "OpenAPI", "url": "https://stupidtrash.com/api/docs", "download": false },
-                { "label": "Postman", "url": "https://stupidtrash.com/api/postman/stupidtrash-api.postman_collection.json", "download": true }
-            ]
-        }
+    "stats": [
+        { "icon": "Work", "value": "7+", "label": "Years Experience" },
+        { "icon": "Code", "value": "10+", "label": "Languages" },
+        { "icon": "Build", "value": "30+", "label": "Technologies" },
+        { "icon": "School", "value": "2", "label": "Degrees" }
     ],
     "skillGroups": [
         {
@@ -118,30 +73,70 @@
             "skills": ["JWT", "OAuth", "MSAL", "SSO"]
         }
     ],
-    "stats": [
-        { "icon": "Work", "value": "7+", "label": "Years Experience" },
-        { "icon": "Code", "value": "10+", "label": "Languages" },
-        { "icon": "Build", "value": "30+", "label": "Technologies" },
-        { "icon": "School", "value": "2", "label": "Degrees" }
+    "jobs": [
+        {
+            "company": "Global Call Center Solutions",
+            "title": "Senior Software Engineer",
+            "focus": "Full Stack Development",
+            "location": "Columbus, GA & Remote",
+            "period": "July 2019 – Present",
+            "current": true,
+            "bullets": [
+                "Modernized system processes such as implementing Bootstrap, Docker, and Bitbucket pipelines.",
+                "Developed multiple SaaS products for clients that interfaced with in-house CRM giving call center agents the ability to coordinate directly.",
+                "Developed and deployed a partner portal, allowing rapid collaboration between sites.",
+                "Ensured compliance to PACE, SOC, and PCI DSS audtions and FCC regulations."
+            ]
+        },
+        {
+            "company": "Sample Express",
+            "title": "Director of Information Technology",
+            "location": "West Point, GA",
+            "period": "March 2018 – July 2019",
+            "current": false,
+            "bullets": [
+                "Lead as Director of Information Technology, responsible for all decisions and solutions.",
+                "Maintained and drastically improved interal CRM and inventory management system, which was critical to the business.",
+                "Deployed a windows domain, bringing user management and security to modern standards."
+            ]
+        }
     ],
-    "contacts": [
+    "projects": [
         {
-            "icon": "Phone",
-            "label": "Phone",
-            "value": "(706) 992-9059",
-            "href": "tel:+17069929059"
+            "title": "RobinsonDavis.com",
+            "description": "A modern, responsive single-page resume and portfolio site built with the help of Claude AI. Designed to showcase my skills, experience, projects, and attention to detail.",
+            "technologies": ["React 19", "TypeScript", "MUI 7", "Vite 8", "Emotion", "Claude CLI"],
+            "github": "https://github.com/radongit/resume",
+            "privateRepo": false,
+            "live": null,
+            "links": []
         },
         {
-            "icon": "Email",
-            "label": "Email",
-            "value": "rdavis334@gmail.com",
-            "href": "mailto:rdavis334@gmail.com"
+            "title": "StupidTrash.com",
+            "description": "A full-stack e-commerce web application with Stripe payment integration, admin dashboard, and secure authentication system. Built with a React 19 frontend, Node.js and Express 5 backend, PostgreSQL database with Prisma 5 ORM, and deployed on AWS with S3 for storage and SES for email notifications.",
+            "technologies": ["React 19", "TypeScript", "Node.js", "Express 5", "PostgreSQL", "Prisma 5", "AWS S3 / SES", "Stripe 20", "TailwindCSS 4", "Vite 7", "TanStack Query 5", "Zustand 5", "React Router 7", "Swagger / OpenAPI", "Sharp", "JWT", "TOTP 2FA", "PM2", "Nginx", "GitHub Actions CI / CD"],
+            "github": "https://github.com/radongit/stupidtrash",
+            "privateRepo": true,
+            "live": "https://stupidtrash.com",
+            "links": [
+                { "label": "OpenAPI", "url": "https://stupidtrash.com/api/docs", "download": false },
+                { "label": "Postman", "url": "https://stupidtrash.com/api/postman/stupidtrash-api.postman_collection.json", "download": true }
+            ]
+        }
+    ],
+    "schools": [
+        {
+            "name": "Auburn University",
+            "degree": "Bachelor of Computer Science",
+            "year": "Graduated 2017",
+            "location": "Auburn, AL"
         },
         {
-            "icon": "LinkedIn",
-            "label": "LinkedIn",
-            "value": "robinson-a-davis",
-            "href": "https://linkedin.com/in/robinson-a-davis"
+            "name": "Chattahoochee Valley Community College",
+            "degree": "Associate of Arts in General Studies",
+            "year": "Graduated 2013",
+            "location": "Phenix City, AL",
+            "honors": "Cum Laude"
         }
     ],
     "documents": [
@@ -165,6 +160,26 @@
             "description": "Download both my resume and cover letter bundled together.",
             "pdf": "/documents/RobinsonDavis_ResumeCover.pdf",
             "docx": "/documents/RobinsonDavis_ResumeCover.docx"
+        }
+    ],
+    "contacts": [
+        {
+            "icon": "Phone",
+            "label": "Phone",
+            "value": "(706) 992-9059",
+            "href": "tel:+17069929059"
+        },
+        {
+            "icon": "Email",
+            "label": "Email",
+            "value": "rdavis334@gmail.com",
+            "href": "mailto:rdavis334@gmail.com"
+        },
+        {
+            "icon": "LinkedIn",
+            "label": "LinkedIn",
+            "value": "robinson-a-davis",
+            "href": "https://linkedin.com/in/robinson-a-davis"
         }
     ]
 }

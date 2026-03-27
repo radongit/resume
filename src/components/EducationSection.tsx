@@ -5,32 +5,9 @@ import Stack from '@mui/material/Stack'
 import SchoolIcon from '@mui/icons-material/School'
 import PlaceIcon from '@mui/icons-material/Place'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, alpha } from '@mui/material/styles'
 import Section from './Section'
-
-interface School {
-    name: string
-    degree: string
-    year: string
-    location: string
-    honors?: string
-}
-
-const schools: School[] = [
-    {
-        name: 'Auburn University',
-        degree: 'Bachelor of Computer Science',
-        year: 'Graduated 2017',
-        location: 'Auburn, AL',
-    },
-    {
-        name: 'Chattahoochee Valley Community College',
-        degree: 'Associate of Arts in General Studies',
-        year: 'Graduated 2013',
-        location: 'Phenix City, AL',
-        honors: 'Cum Laude',
-    },
-]
+import data from '../data.json'
 
 export default function EducationSection() {
     const theme = useTheme()
@@ -47,12 +24,12 @@ export default function EducationSection() {
                         top: 4,
                         bottom: 4,
                         width: '1.5px',
-                        backgroundColor: isDark ? 'rgba(46,125,50,0.2)' : 'rgba(46,125,50,0.15)',
+                        backgroundColor: isDark ? alpha(theme.palette.primary.main, 0.2) : alpha(theme.palette.primary.main, 0.15),
                     }}
                 />
 
                 <Stack spacing={5}>
-                    {schools.map(school => (
+                    {data.schools.map(school => (
                         <Box key={school.name} sx={{ position: 'relative' }}>
                             {/* Timeline dot */}
                             <Box
@@ -63,12 +40,12 @@ export default function EducationSection() {
                                     width: 10,
                                     height: 10,
                                     borderRadius: '50%',
-                                    backgroundColor: isDark ? '#66bb6a' : '#2e7d32',
+                                    backgroundColor: isDark ? theme.palette.primary.light : theme.palette.primary.main,
                                     border: '2px solid',
                                     borderColor: isDark ? '#0e0e0e' : '#ffffff',
                                     boxShadow: isDark
-                                        ? '0 0 0 3px rgba(46,125,50,0.15)'
-                                        : '0 0 0 3px rgba(46,125,50,0.1)',
+                                        ? `0 0 0 3px ${alpha(theme.palette.primary.main, 0.15)}`
+                                        : `0 0 0 3px ${alpha(theme.palette.primary.main, 0.1)}`,
                                 }}
                             />
 

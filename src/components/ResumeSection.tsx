@@ -11,7 +11,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf'
 import ArticleIcon from '@mui/icons-material/Article'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, alpha } from '@mui/material/styles'
 import Section from './Section'
 import Icon from '../iconMap'
 import data from '../data.json'
@@ -55,13 +55,13 @@ export default function ResumeSection() {
                                         boxShadow: isDark
                                             ? '0 8px 32px rgba(0,0,0,0.3)'
                                             : '0 8px 32px rgba(0,0,0,0.06)',
-                                        borderColor: isDark ? 'rgba(46,125,50,0.15)' : 'rgba(46,125,50,0.12)',
+                                        borderColor: isDark ? alpha(theme.palette.primary.main, 0.15) : alpha(theme.palette.primary.main, 0.12),
                                     },
                                 }}
                             >
                                 <CardContent sx={{ p: { xs: 2.5, md: 3 }, '&:last-child': { pb: { xs: 2.5, md: 3 } } }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 2, md: 3 }, flexWrap: { xs: 'wrap', sm: 'nowrap' } }}>
-                                        <Box sx={{ color: isDark ? '#66bb6a' : '#2e7d32', display: 'flex', opacity: 0.75 }}>
+                                        <Box sx={{ color: isDark ? theme.palette.primary.light : theme.palette.primary.main, display: 'flex', opacity: 0.75 }}>
                                             <Icon name={doc.icon} sx={{ fontSize: 24 }} />
                                         </Box>
                                         <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -146,16 +146,16 @@ export default function ResumeSection() {
                                                     borderRadius: 2,
                                                     fontSize: '0.72rem',
                                                     borderColor: isActive
-                                                        ? (isDark ? '#66bb6a' : '#2e7d32')
+                                                        ? (isDark ? theme.palette.primary.light : theme.palette.primary.main)
                                                         : (isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)'),
                                                     color: isActive
-                                                        ? (isDark ? '#66bb6a' : '#2e7d32')
+                                                        ? (isDark ? theme.palette.primary.light : theme.palette.primary.main)
                                                         : 'text.secondary',
                                                     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                                     '&:hover': {
-                                                        borderColor: isDark ? '#66bb6a' : '#2e7d32',
-                                                        color: isDark ? '#66bb6a' : '#2e7d32',
-                                                        backgroundColor: isDark ? 'rgba(102,187,106,0.08)' : 'rgba(46,125,50,0.06)',
+                                                        borderColor: isDark ? theme.palette.primary.light : theme.palette.primary.main,
+                                                        color: isDark ? theme.palette.primary.light : theme.palette.primary.main,
+                                                        backgroundColor: isDark ? alpha(theme.palette.primary.light, 0.08) : alpha(theme.palette.primary.main, 0.06),
                                                     },
                                                 }}
                                             >
@@ -209,12 +209,12 @@ export default function ResumeSection() {
                                         boxShadow: isDark
                                             ? '0 8px 32px rgba(0,0,0,0.3)'
                                             : '0 8px 32px rgba(0,0,0,0.06)',
-                                        borderColor: isDark ? 'rgba(46,125,50,0.15)' : 'rgba(46,125,50,0.12)',
+                                        borderColor: isDark ? alpha(theme.palette.primary.main, 0.15) : alpha(theme.palette.primary.main, 0.12),
                                     },
                                 }}
                             >
                                 <Box sx={{
-                                    color: isDark ? '#66bb6a' : '#2e7d32',
+                                    color: isDark ? theme.palette.primary.light : theme.palette.primary.main,
                                     display: 'flex',
                                     opacity: 0.7,
                                 }}>
@@ -258,7 +258,7 @@ export default function ResumeSection() {
                         borderRadius: 3,
                         overflow: 'hidden',
                         border: '1px solid',
-                        borderColor: isDark ? 'rgba(46,125,50,0.2)' : 'rgba(46,125,50,0.15)',
+                        borderColor: isDark ? alpha(theme.palette.primary.main, 0.2) : alpha(theme.palette.primary.main, 0.15),
                         boxShadow: isDark
                             ? '0 8px 32px rgba(0,0,0,0.4)'
                             : '0 8px 32px rgba(0,0,0,0.08)',
